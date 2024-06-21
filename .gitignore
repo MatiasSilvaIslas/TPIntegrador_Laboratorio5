@@ -24,8 +24,15 @@
 hs_err_pid*
 replay_pid*
 
+<<<<<<< HEAD
 TPIntegrador_Grupo7.iml
 .classpath
 .project
 .idea
 target/
+=======
+
+.classpath
+.project
+.idea
+>>>>>>> 37e2e11 (inicio)
