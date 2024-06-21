@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<bean id="beanUsuarioNegocio" class="frgp.utn.edu.ar.negocioImp.UsuarioNegocioImp"
+		scope="singleton">
+		<property name="daoUsuario" ref="beanDaoUsuario"></property>
+	</bean>
+
+	<bean id="beanDaoUsuario" class="frgp.utn.edu.ar.daoImp.DaoUsuarioImp"
+		scope="singleton">
+		<property name="conexion" ref="beanConexion"></property>
+	</bean>
+
+	<bean id="beanConexion" class="frgp.utn.edu.ar.daoImp.Conexion"
+		scope="singleton">
+	</bean>
+
+	<bean id="beanUsuario" class="frgp.utn.edu.ar.entidad.Usuario"
+		scope="prototype">
+	</bean>
+
+	<bean id="beanMedicoNegocio" class="frgp.utn.edu.ar.negocioImp.MedicoNegocioImp"
+		scope="singleton">
+		<property name="daoMedico" ref="beanDaoMedico"></property>
+	</bean>
+
+	<bean id="beanDaoMedico" class="frgp.utn.edu.ar.daoImp.DaoMedicoImp"
+		scope="singleton">
+		<property name="conexion" ref="beanConexion"></property>
+	</bean>
+
+	<bean id="beanMedico" class="frgp.utn.edu.ar.entidad.Medico"
+		scope="prototype">
+	</bean>
+
+
+	<bean id="beanEspecialidad" class="frgp.utn.edu.ar.entidad.Especialidad"
+		scope="prototype">
+	</bean>
+
+	<bean id="beanDaoEspecialidad" class="frgp.utn.edu.ar.daoImp.DaoEspecialidad"
+		scope="singleton">
+		<property name="conexion" ref="beanConexion"></property>
+	</bean>
+
+	<bean id="beanEspecialidadNegocio" class="frgp.utn.edu.ar.negocioImp.EspecialidadNegocioImp"
+		scope="singleton">
+		<property name="daoEspecialidad" ref="beanDaoEspecialidad"></property>
+	</bean>
+
+
+	<bean id="beanTurno" class="frgp.utn.edu.ar.entidad.Turno" scope="prototype"></bean>
+
+	<bean id="beanDaoTurno" class="frgp.utn.edu.ar.daoImp.DaoTurno"
+		scope="singleton">
+		<property name="conexion" ref="beanConexion"></property>
+	</bean>
+
+	 <bean id="beanTurnoNegocio" class="frgp.utn.edu.ar.negocioImp.TurnoNegocio"
+		scope="singleton">
+		<property name="daoTurno" ref="beanDaoTurno"></property>
+	</bean>
+
+	<!--  Paciente -->
+	 	<bean id="beanPacienteNegocio" class="frgp.utn.edu.ar.negocioImp.PacienteNegocioImp" scope="singleton">
+			<property name="daoPaciente" ref="beanDaoPaciente"></property>
+		</bean>
+	
+	 <bean id="beanDaoPaciente" class="frgp.utn.edu.ar.daoImp.DaoPaciente" scope="singleton">
+		<property name="conexion" ref="beanConexion"></property>
+	</bean>
+	
+	<bean id="beanPaciente" class="frgp.utn.edu.ar.entidad.Paciente" scope="prototype">
+	</bean>
+	
+
+	<!-- <bean id="beanEspecialidadTurno" class="frgp.utn.edu.ar.negocioImp.TurnoNegocioImp" 
+		scope="singleton"> <property name="daoTurno" ref="beanDaoTurno"></property> 
+		</bean> -->
+
+
+</beans>

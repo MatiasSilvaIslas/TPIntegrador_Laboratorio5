@@ -278,7 +278,7 @@ table th {
 }
 
 #btnRegistrar:hover, #btnRegistrar:active,
-#btnIniciarSesionr:hover, #btnIniciarSesion:active,
+#btnIniciarSesionr:hover, #btnIniciarSesion:active
  {
   background-color: white;
   color: black;
