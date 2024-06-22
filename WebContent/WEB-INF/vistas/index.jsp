@@ -9,7 +9,7 @@
 <!-- Bootstrap icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-<title>Banco UTN</title>
+<title>Consultorio Medico UTN</title>
 </head>
 
 <body>
