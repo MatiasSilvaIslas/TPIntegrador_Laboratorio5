@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <title>Consultorio Medico UTN</title>
+<link rel="icon" href="./img/favicon.png" type="image/png" sizes="30x38">
+
 </head>
 
 <body>
