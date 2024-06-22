@@ -2,6 +2,8 @@ package frgp.utn.edu.ar.daoImp;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
+
 import frgp.utn.edu.ar.dao.IdaoUsuario;
 import frgp.utn.edu.ar.entidad.Usuario;
 
@@ -184,6 +186,14 @@ public class DaoUsuarioImp implements IdaoUsuario{
         List<Usuario> usuarios = session.createQuery("FROM Usuario").list();
         return usuarios;
 	}
+	
+	 public Usuario autenticarUsuario(String nombreUsuario, String password) {
+	        Usuario usuario = ReadOne(nombreUsuario);
+	        if (usuario != null && usuario.getPass().equals(password)) {
+	            return usuario;
+	        }
+	        return null;
+	    }
 
 	//Agrego los gettes y setters para Spring Core
 	
