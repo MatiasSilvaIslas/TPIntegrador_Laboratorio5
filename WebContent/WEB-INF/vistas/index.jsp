@@ -15,6 +15,13 @@
 </head>
 
 <body>
+<nav>
+	<ul>
+		<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+		<li><a href="${pageContext.request.contextPath}/pacientes">pacientes</a></li>
+		<li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
+	</ul>
+</nav>
 <section class="vh-100" style="background-color: #508bfc;">
     <% 
         boolean isCliente = true;
