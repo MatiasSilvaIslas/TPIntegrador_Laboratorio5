@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/styles.css">
 <title>Inicio - Admin</title>
-
+    <link rel="icon" href="./img/favicon.png" type="image/png" sizes="30x38">
 </head>
 <body>
 <%
@@ -35,9 +35,9 @@
 				<div class="collapse navbar-collapse" id="navbarExample01">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item active" style="background-color: highlight;">
-							<a class="nav-link" aria-current="page" href="index.jsp"> <i
-								class="fas fa-arrow-left"></i> Cerrar Sesion
-						</a>
+							<a class="nav-link" aria-current="page" href="index.jsp"> 
+								<i class="fas fa-arrow-left"></i> Cerrar Sesion
+							</a>
 						</li>
 					</ul>
 
