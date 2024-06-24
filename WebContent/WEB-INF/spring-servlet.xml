@@ -35,6 +35,7 @@
 	</bean>
 	
 	<bean id="beanPaciente" class="frgp.utn.edu.ar.entidad.Paciente" scope="prototype">
+
 	</bean>
 	
 </beans>

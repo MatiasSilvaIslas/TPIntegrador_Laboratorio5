@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page session="true"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,13 @@
 
 </head>
 <body>
+<%
 
+	session= request.getSession();
+	String usuario = ((Usuario) request.getAttribute("usuario")).getUser().toString();
+	session.setAttribute("usuario", usuario);
+
+%>
 	<header style="padding: 25px;">
 		<nav style=""
 			class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
@@ -70,7 +77,7 @@
 
 					<div class="card text-center bg-light shadow h-100 py-2">
 						<a href="#" class="card-body"> <i
-							class="fas fa-user-md card-icon fa-3x"'></i>
+							class="fas fa-user-md card-icon fa-3x"></i>
 							<h5 class="card-title mt-2">Administrar Medicos</h5>
 						</a>
 					</div>

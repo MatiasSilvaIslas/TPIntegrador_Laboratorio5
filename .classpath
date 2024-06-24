@@ -17,5 +17,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="/TP6_Tema7_Grupo7"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

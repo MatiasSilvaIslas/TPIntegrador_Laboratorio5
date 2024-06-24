@@ -1,9 +1,11 @@
 package frgp.utn.edu.ar.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
 
+import frgp.utn.edu.ar.entidad.Administrador;
+import frgp.utn.edu.ar.entidad.Medico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +39,10 @@ public class IndexController {
         ModelAndView mv = new ModelAndView();
               
         if (usuario != null) {
-            if (usuario.getAdmin() != null) {
+            if (usuario.getAdmin() instanceof Administrador) {
             	 mv.addObject("usuario", usuario);
                  mv.setViewName("admin");
-            } else if (usuario.getMedico()!=null)
+            } else if (usuario.getMedico()instanceof Medico)
             	mv.setViewName("medico");
             }else {
             	mv.setViewName("error");
