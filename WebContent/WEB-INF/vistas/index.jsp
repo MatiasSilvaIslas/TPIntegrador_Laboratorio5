@@ -29,7 +29,7 @@
                 <div class="card shadow-2-strong" style="border-radius: 1rem;">
                     <div class="card-body text-center">
                         <h2 class="mt-3 mb-5 fs-1">Acceso</h2>
-                        <form class="text-center" action="admin.html" method="post">
+                        <form class="text-center" action="redirect.html" method="post">
                             <fieldset>
                                 <div class="form-floating">
                                     <input type="text" name="txtUsuario" placeholder="Usuario" required class="form-control form-control-lg mb-2">
@@ -44,9 +44,7 @@
                                 </p>
                             </fieldset>
                         </form>
-                        <div class="opcionesIndex">
-                            <a href="/TPINT_GRUPO_2_LAB4/ServletUsuario?btnIndex">¿Te olvidaste la clave?</a>
-                        </div>
+                       
                         <div style="display:flex; flex-direction: column; align-items: center;">
                             <% if (isCliente == false) { %>    
                                 <p style="font-size: 1.2rem; color:red; margin-top:20px;">¡Error de inicio de sesión! Por favor, verifique sus credenciales o visite una sucursal para obtener asistencia adicional. </p>

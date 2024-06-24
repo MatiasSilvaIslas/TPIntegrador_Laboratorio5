@@ -24,5 +24,17 @@
 
 <bean id="beanConexion" class="frgp.utn.edu.ar.daoImp.Conexion" scope="singleton">
 </bean>
+
+<!--  Paciente -->
+	 	<bean id="beanPacienteNegocio" class="frgp.utn.edu.ar.negocioImp.PacienteNegocioImp" scope="singleton">
+			<property name="daoPaciente" ref="beanDaoPaciente"></property>
+		</bean>
+	
+	 <bean id="beanDaoPaciente" class="frgp.utn.edu.ar.daoImp.DaoPaciente" scope="singleton">
+		<property name="conexion" ref="beanConexion"></property>
+	</bean>
+	
+	<bean id="beanPaciente" class="frgp.utn.edu.ar.entidad.Paciente" scope="prototype">
+	</bean>
 	
 </beans>

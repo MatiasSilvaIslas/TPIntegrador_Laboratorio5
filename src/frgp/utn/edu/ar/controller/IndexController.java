@@ -30,19 +30,20 @@ public class IndexController {
 	@Autowired
 	UsuarioNegocioImp negocioUsuario;
 
-	@RequestMapping(value = "admin.html", method = RequestMethod.POST)
+	@RequestMapping(value = "redirect.html", method = RequestMethod.POST)
     public ModelAndView autenticarUsuario(String txtUsuario, String txtClave) {
 		
         Usuario usuario = negocioUsuario.autenticarUsuario(txtUsuario, txtClave);
         ModelAndView mv = new ModelAndView();
-        
-        
+              
         if (usuario != null) {
             if (usuario.getAdmin() != null) {
             	 mv.addObject("usuario", usuario);
                  mv.setViewName("admin");
             } else if (usuario.getMedico()!=null)
             	mv.setViewName("medico");
+            }else {
+            	mv.setViewName("error");
             }
 		return mv;
 	}
