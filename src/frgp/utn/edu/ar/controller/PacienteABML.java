@@ -41,3 +41,5 @@ public class PacienteABML {
         return mv;
 	}
 }
+//EDITAR PACIENTE EMI
+//ALTA PACIENTE NICO

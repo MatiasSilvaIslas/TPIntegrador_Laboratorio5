@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Medicoooo</title>
+<title>Medico</title>
+<link rel="icon" href="./img/favicon.png" type="image/png" sizes="30x38">
 </head>
 <body>
 
