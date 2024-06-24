@@ -30,7 +30,7 @@ public class Usuario implements Serializable{
 	    private Medico medico;
 
 	    @OneToOne(mappedBy = "usuario", fetch = FetchType.EAGER)
-	    private Administrador admin;
+	    private Administrador admin=null;
 
 	    public Medico getMedico() {
 	        return medico;

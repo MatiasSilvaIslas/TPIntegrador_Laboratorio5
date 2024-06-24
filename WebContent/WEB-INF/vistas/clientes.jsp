@@ -1,6 +1,4 @@
 <%@page import="frgp.utn.edu.ar.entidad.Usuario"%>
-<%@ page import="frgp.utn.edu.ar.entidad.Administrador" %>
-<%@ page import="frgp.utn.edu.ar.entidad.Medico" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@page session="true"%>
@@ -14,7 +12,8 @@
     <title>Inicio - Admin</title>
 </head>
 <body>
-
+<h1>hola</h1>
+<%--
 <header  style=" padding: 25px;">
     <nav style="" class="navbar navbar-expand-lg navbar-light bg-white fixed-top" >
         <div class="container-fluid">
@@ -31,17 +30,7 @@
 
                 <div class="alert alert-info ml-auto">
                     <i class="fas fa-user"></i>
-
-                    <%--<span><%= ((Usuario) request.getAttribute("usuario")).getAdmin().getNombre() != null ? ((Usuario) request.getAttribute("usuario")).getAdmin().getNombre() : "loco"  %>--%>
-                    <%
-                        Usuario usuario = (Usuario) request.getAttribute("usuario");
-                        if (usuario.getAdmin() instanceof Administrador) {
-                            out.print(usuario.getAdmin().getNombre());
-                        } else if (usuario.getMedico() instanceof Medico) {
-                            out.print(usuario.getUser());
-                        }
-                    %>
-                    </span>
+                    <span><%= ((Usuario) request.getAttribute("usuario")).getAdmin().getNombre() %></span>
                 </div>
             </div>
         </div>
@@ -70,7 +59,6 @@
                     <a href="#" class="card-body">
                         <i class="fas fa-user card-icon fa-3x"></i>
                         <h5 class="card-title mt-2 ">Administrar Pacientes</h5>
-                        <a href="${pageContext.request.contextPath}/clientes.html">Administrar Pacientes</a> // redirecciona a la paginas
                     </a>
                 </div>
                 <div class="card text-center bg-light shadow h-100 py-2">
@@ -94,7 +82,8 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
+--%>
 
 </body>
 </html>
