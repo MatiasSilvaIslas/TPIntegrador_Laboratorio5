@@ -4,9 +4,9 @@
 <%@page session="true"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta charset="ISO-8859-1">
+  <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -22,11 +22,9 @@
 </head>
 <body>
 <%
-
 	session= request.getSession();
 	String usuario = ((Usuario) request.getAttribute("usuario")).getUser().toString();
 	session.setAttribute("usuario", usuario);
-
 %>
 	<header style="padding: 25px;">
 		<nav style=""

@@ -87,7 +87,7 @@ a{
 }
 
 .opcionesMenu a:hover, .opcionesMenu a:active {
-  background-color: green;
+  background-color: #0000a0;
   color: white;
 }
 
@@ -100,18 +100,25 @@ table {
 table td, table th {
   border: 1px solid #ddd;
   padding: 8px;
+  background-color: #f2f2f2;
 }
 
 table tr:nth-child(even){background-color: #f2f2f2;}
 
-table tr:hover {background-color: #ddd;}
-
+/* Estilo para el encabezado de la tabla */
 table th {
+  background-color: #0000a0; /* Azul Francia */
+  color: #ffffff; /* Blanco */
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color:aqua;
 }
+
+/* Estilo al pasar el mouse sobre una fila */
+table tr:hover {
+  background-color: #f2f2f2; /* Gris claro */
+}
+
 
 .tablaReportes{
  	margin-top: 1rem;
