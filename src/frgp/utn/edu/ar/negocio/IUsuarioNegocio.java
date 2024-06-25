@@ -11,4 +11,5 @@ public interface IUsuarioNegocio {
 	public boolean Exist(String nombreUsuario);
 	public boolean Update(Usuario usuario);
 	public boolean Delete(Usuario usuario);
+	public Usuario autenticarUsuario(String nombreUsuario, String password);
 }

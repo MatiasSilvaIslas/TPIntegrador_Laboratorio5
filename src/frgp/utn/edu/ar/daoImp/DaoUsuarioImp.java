@@ -2,6 +2,8 @@ package frgp.utn.edu.ar.daoImp;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
+
 import frgp.utn.edu.ar.dao.IdaoUsuario;
 import frgp.utn.edu.ar.entidad.Usuario;
 
@@ -28,13 +30,13 @@ public class DaoUsuarioImp implements IdaoUsuario{
 	        // Guardar el objeto
 	        session.save(user);
 	        
-	        // Forzar la sincronización de la sesión con la base de datos
+	        // Forzar la sincronizaciï¿½n de la sesiï¿½n con la base de datos
 	        session.flush();
 	        
-	        // Confirmar la transacción
+	        // Confirmar la transacciï¿½n
 	        session.getTransaction().commit();
 	        
-	        // Verificar si el objeto se agregó a la base de datos
+	        // Verificar si el objeto se agregï¿½ a la base de datos
 	        Usuario savedUser = (Usuario) session.get(Usuario.class, user.getId());
 	        
 	        if (savedUser == null) {
@@ -61,25 +63,24 @@ public class DaoUsuarioImp implements IdaoUsuario{
 	        session.beginTransaction();
 
 	        // Construyendo la consulta HQL
-	        String hql = "FROM Usuario u WHERE u.user = :nombreUsuario";
-	        
+	        String hql = "FROM Usuario u WHERE u.user = :nombreUsuario and u.activo = true and u.medico.activo = true";
+	        System.out.println(hql+"---- "+nombreUsuario);
 	        // Ejecutando la consulta y obteniendo el resultado
+
 	        usuario = (Usuario) session.createQuery(hql)
 	                                  .setParameter("nombreUsuario", nombreUsuario)
-	                                  .uniqueResult();
-	        
+										.uniqueResult();
+	        System.out.println(usuario+"---- "+nombreUsuario);
 	        session.getTransaction().commit();
 	    } catch (Exception e) {
-	        if (session != null && session.getTransaction().isActive()) {
-	            session.getTransaction().rollback();
-	        }
+
 	        e.printStackTrace();
-	    } finally {
+	    } /*finally {
 	        if (session != null && session.isOpen()) {
 	            session.close();
 	        }
-	    }
-	    
+	    }*/
+
 	    return usuario;
 	}
 
@@ -109,13 +110,13 @@ public class DaoUsuarioImp implements IdaoUsuario{
 	        // Guardar el objeto
 	        session.update(usuario);
 	        
-	        // Forzar la sincronización de la sesión con la base de datos
+	        // Forzar la sincronizaciï¿½n de la sesiï¿½n con la base de datos
 	        session.flush();
 	        
-	        // Confirmar la transacción
+	        // Confirmar la transacciï¿½n
 	        session.getTransaction().commit();
 	        
-	        // Verificar si el objeto se actualizó correctamente en la base de datos
+	        // Verificar si el objeto se actualizï¿½ correctamente en la base de datos
 	        Usuario savedUser = (Usuario) session.get(Usuario.class, usuario.getId());
 	        
 	        if (savedUser == null || !savedUser.equals(usuario)) {
@@ -125,7 +126,7 @@ public class DaoUsuarioImp implements IdaoUsuario{
 	        if (session != null) {
 	            session.getTransaction().rollback();
 	        }
-	        estado = false; // Actualización fallida
+	        estado = false; // Actualizaciï¿½n fallida
 	        e.printStackTrace();
 	    } finally {
 	        if (session != null && session.isOpen()) {
@@ -145,17 +146,17 @@ public class DaoUsuarioImp implements IdaoUsuario{
 	        session = conexion.abrirConexion();
 	        session.beginTransaction();
 	        
-	        // Actualizar el estado del usuario a inactivo (borrado lógico)
+	        // Actualizar el estado del usuario a inactivo (borrado lï¿½gico)
 	        usuario.setActivo(false);
 	        session.update(usuario);
 	        
-	        // Forzar la sincronización de la sesión con la base de datos
+	        // Forzar la sincronizaciï¿½n de la sesiï¿½n con la base de datos
 	        session.flush();
 	        
-	        // Confirmar la transacción
+	        // Confirmar la transacciï¿½n
 	        session.getTransaction().commit();
 	        
-	        // Verificar si el objeto se actualizó correctamente en la base de datos
+	        // Verificar si el objeto se actualizï¿½ correctamente en la base de datos
 	        Usuario updatedUser = (Usuario) session.get(Usuario.class, usuario.getId());
 	        
 	        if (updatedUser == null || !updatedUser.isActivo()) {
@@ -165,7 +166,7 @@ public class DaoUsuarioImp implements IdaoUsuario{
 	        if (session != null) {
 	            session.getTransaction().rollback();
 	        }
-	        estado = false; // Borrado lógico fallido
+	        estado = false; // Borrado lï¿½gico fallido
 	        e.printStackTrace();
 	    } finally {
 	        if (session != null && session.isOpen()) {
@@ -184,6 +185,14 @@ public class DaoUsuarioImp implements IdaoUsuario{
         List<Usuario> usuarios = session.createQuery("FROM Usuario").list();
         return usuarios;
 	}
+	
+	 public Usuario autenticarUsuario(String nombreUsuario, String password) {
+	        Usuario usuario = ReadOne(nombreUsuario);
+	        if (usuario != null && usuario.getPass().equals(password)) {
+	            return usuario;
+	        }
+	        return null;
+	    }
 
 	//Agrego los gettes y setters para Spring Core
 	

@@ -15,14 +15,15 @@
         <property name="hibernate.show_sql">true</property>
        <!-- <property name="hibernate.format_sql">true</property>-->
         
-      <!--	<property name="hibernate.hbm2ddl.auto" >create</property>--> 
-   		 <property name="hibernate.hbm2ddl.auto" >update</property>  
+      	<property name="hibernate.hbm2ddl.auto" >update</property>
+   		<!-- <property name="hibernate.hbm2ddl.auto" >update</property>  --> 
         <property name="hbm2ddl.show_sql">true</property>
         <mapping class="frgp.utn.edu.ar.entidad.Usuario"/>
         <mapping class="frgp.utn.edu.ar.entidad.Medico"/>
         <mapping class="frgp.utn.edu.ar.entidad.Especialidad"/>
         <mapping class="frgp.utn.edu.ar.entidad.Paciente"/>
         <mapping class="frgp.utn.edu.ar.entidad.Turno"/>
+        <mapping class="frgp.utn.edu.ar.entidad.Administrador"/>
         
     </session-factory>
 </hibernate-configuration>

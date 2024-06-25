@@ -2,6 +2,8 @@ package frgp.utn.edu.ar.negocioImp;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import frgp.utn.edu.ar.dao.IdaoUsuario;
 import frgp.utn.edu.ar.daoImp.DaoUsuarioImp;
 import frgp.utn.edu.ar.entidad.Usuario;
@@ -49,7 +51,11 @@ public class UsuarioNegocioImp implements IUsuarioNegocio{
 		public boolean Delete(Usuario usuario) {
 			return daoUsuario.Delete(usuario);
 		}
-
+		
+		public Usuario autenticarUsuario(String nombreUsuario, String password) {
+			return daoUsuario.autenticarUsuario(nombreUsuario, password);
+		}
+		
 		public IdaoUsuario getDao() {
 			return daoUsuario;
 		}

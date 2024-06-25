@@ -29,3 +29,4 @@ TPIntegrador_Grupo7.iml
 .project
 .idea
 target/
+src/hibernate.cfg.xml
