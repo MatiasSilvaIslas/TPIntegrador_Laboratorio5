@@ -76,11 +76,11 @@
                     <th>Apellido</th>
                     <th>DNI</th>
                     <th>Fecha de Nacimiento</th>
-                    <th>DirecciÃ³n</th>
+                    <th>Dirección</th>
                     <th>Provincia</th>
                     <th>Localidad</th>
                     <th>Sexo</th>
-                    <th>Telefono</th>
+                    <th>Teléfono</th>
                     <th></th>
                     <th></th>
                 </tr>
