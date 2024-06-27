@@ -8,8 +8,7 @@ import java.util.regex.Pattern;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pacientes")
-
+@Table(name = "Pacientes")
 public class Paciente implements Serializable {
 	private static final long serialVersionUID=1L;
 	@Id
@@ -45,11 +44,13 @@ public class Paciente implements Serializable {
     @Column(name = "direccion")
     private String direccion;
     
-    @Column(name = "localidad")
-    private String localidad;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "localidad_id", nullable = false)
+    private Localidad localidad;
 
-    @Column(name = "provincia")
-    private String provincia;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "provincia_id", nullable = false)
+    private Provincia provincia;
     
     @Column(name = "correo_electronico")
     private String correoElectronico;
@@ -68,7 +69,7 @@ public class Paciente implements Serializable {
     public Paciente() {} 
 	
 	public Paciente(int dni, String nombre, String apellido,
-			char sexo, Date fechaNacimiento, String direccion, String localidad, String provincia, String correoElectronico,
+			char sexo, Date fechaNacimiento, String direccion, Localidad localidad, Provincia provincia, String correoElectronico,
 			String telefono, boolean activo) {
 		super();
 		
@@ -133,19 +134,19 @@ public class Paciente implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getLocalidad() {
+	public Localidad getLocalidad() {
 		return localidad;
 	}
 
-	public void setLocalidad(String localidad) {
+	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
 	}
 	
-	public String getProvincia() {
+	public Provincia getProvincia() {
 		return provincia;
 	}
 
-	public void setProvincia(String provincia) {
+	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
 	}
 

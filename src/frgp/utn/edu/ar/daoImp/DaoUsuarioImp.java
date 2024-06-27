@@ -63,7 +63,7 @@ public class DaoUsuarioImp implements IdaoUsuario{
 	        session.beginTransaction();
 
 	        // Construyendo la consulta HQL
-	        String hql = "FROM Usuario u WHERE u.user = :nombreUsuario and u.activo = true and u.medico.activo = true";
+	        String hql = "FROM Usuario u WHERE u.user = :nombreUsuario and u.activo = true";
 	        System.out.println(hql+"---- "+nombreUsuario);
 	        // Ejecutando la consulta y obteniendo el resultado
 

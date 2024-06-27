@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "medicos")
+@Table(name = "Medicos")
 public class Medico implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -45,8 +45,9 @@ public class Medico implements Serializable {
     @Column(name = "direccion")
     private String direccion;
 
-    @Column(name = "localidad")
-    private String localidad;
+    @ManyToOne
+    @JoinColumn(name = "localidad_id", nullable = false)
+    private Localidad localidad;
 
     @Column(name = "correo_electronico")
     private String correoElectronico;
@@ -141,11 +142,11 @@ public class Medico implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getLocalidad() {
+    public Localidad getLocalidad() {
         return localidad;
     }
 
-    public void setLocalidad(String localidad) {
+    public void setLocalidad(Localidad localidad) {
         this.localidad = localidad;
     }
 

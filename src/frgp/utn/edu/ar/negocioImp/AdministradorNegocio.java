@@ -6,7 +6,7 @@ import frgp.utn.edu.ar.entidad.Administrador;
 import frgp.utn.edu.ar.negocio.IAdministradorNegocio;
 
 public class AdministradorNegocio implements IAdministradorNegocio{
-private IdaoAdministrador daoAdministrador;
+	private IdaoAdministrador daoAdministrador;
 	
 	public AdministradorNegocio()
 	{

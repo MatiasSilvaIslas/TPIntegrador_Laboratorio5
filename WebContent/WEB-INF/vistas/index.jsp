@@ -16,12 +16,6 @@
 
 <body>
 <section class="vh-100" style="background-color: #508bfc;">
-    <%
-        boolean isCliente = true;
-        if(request.getAttribute("isCliente") != null) {
-            isCliente = (Boolean) request.getAttribute("isCliente");
-        }
-    %>
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <img alt="logo" class="text-center w-25 p-1" src="img/logo.png">
@@ -43,18 +37,7 @@
                                     <input class="btn btn-outline-info fs-4" type="submit" value="Iniciar sesión" name="btnIniciarSesion" id="btnIniciarSesion">
                                 </p>
                             </fieldset>
-                        </form>
-                       
-                        <div style="display:flex; flex-direction: column; align-items: center;">
-                            <% if (isCliente == false) { %>
-                            <p style="font-size: 1.2rem; color:red; margin-top:20px;">¡Error de inicio de sesión! Por favor, verifique sus credenciales o visite una sucursal para obtener asistencia adicional. </p>
-                            <% } %>
-                        </div>
-                        <% if (request.getAttribute("SesionFallida") != null) { %>
-                        <script>
-                            alert("Usuario o clave no válida, intente nuevamente.");
-                        </script>
-                        <% } %>
+                        </form>     
                     </div>
                 </div>
             </div>

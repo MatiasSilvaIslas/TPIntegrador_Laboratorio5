@@ -24,7 +24,7 @@ import frgp.utn.edu.ar.negocioImp.TurnoNegocio;
 import frgp.utn.edu.ar.negocioImp.UsuarioNegocioImp;
 
 public class main {
-
+/*
 	private final static String MENSAJE_AGREGADO = "AGREGADO CORRECTAMENTE";
 	private final static String MENSAJE_YA_EXISTE = "YA EXISTE EN LA BASE DE DATOS";
 	private final static String MENSAJE_MODIFICADO = "MODIFICADO CORRECTAMENTE";
@@ -445,6 +445,7 @@ public class main {
 		/*Medico, Paciente, fecha, hora, observacion, estado (pendiente, presente, ausente).*/
 		
 		// Se inicializan las variables junto con los beans
+	/*
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("frgp/utn/edu/ar/resources/Beans.xml");
 		//MEDICOS
 		MedicoNegocioImp medicoNegocio = (MedicoNegocioImp) appContext.getBean("beanMedicoNegocio");
@@ -564,4 +565,5 @@ public class main {
 			System.out.println(MENSAJE_LISTADO_TODOS_LOS_USUARIOS+ turno.toString());
 	     }
 	}
+*/
 }
