@@ -30,41 +30,62 @@ public class PacienteABML {
     LocalidadNegocio localidadNegocio;
     @Autowired
     ProvinciaNegocio provinciaNegocio;
-
+    
     @RequestMapping(value = "PacienteAlta.html", method = RequestMethod.POST)
-    //VER EL TEMA DE LA PROVINCIA Y LOCALIDAD
-    public ModelAndView altaPaciente(String nombre, String apellido, String dni, String telefono, Integer provincia, Integer localidad, String direccion, String fechaNacimiento, String sexo,HttpServletRequest request,String email){
+    public ModelAndView altaPaciente(Integer id, String nombre, String apellido, String dni, String telefono, Integer provincia, Integer localidad, String direccion, String fechaNacimiento, String sexo,HttpServletRequest request,String email,String accion){
         HttpSession session = request.getSession();
         System.out.println("entro a alta paciente");
-        //String username = request.getParameter("usuario");
-        String username =session.getAttribute("usuario").toString();
-        System.out.println("usuario: "+username);
 
+        String username =session.getAttribute("usuario").toString();
         Usuario usuario = negocioUsuario.ReadOne(username);
         Provincia provinciaObj = provinciaNegocio.ReadOne(provincia);
         Localidad localidadObj = localidadNegocio.ReadOne(localidad);
-        System.out.println("entro a alta paciente");
         ModelAndView mv = new ModelAndView();
-        try {
-            Paciente paciente = new Paciente();
-            paciente.setNombre(nombre);
-            paciente.setApellido(apellido);
-            paciente.setDNI(Integer.valueOf(dni));
-            paciente.setTelefono(telefono);
-            paciente.setProvincia(provinciaObj);
-            paciente.setLocalidad(localidadObj);
-            paciente.setDireccion(direccion);
-            paciente.setFechaNacimiento(Date.valueOf(fechaNacimiento));
-            paciente.setSexo(sexo.charAt(0));
-            paciente.setCorreoElectronico(email);
-            pacienteNegocio.Add(paciente);
-            mv.addObject("usuario", usuario);
-            mv.addObject("msg", "ok, paciente agregado correctamente");
+        Paciente paciente = new Paciente();
 
-			mv.setViewName("admin");
+        
+        try {
+            if (id == null) {
+                paciente.setNombre(nombre);
+                paciente.setApellido(apellido);
+                paciente.setDNI(Integer.valueOf(dni));
+                paciente.setTelefono(telefono);
+                paciente.setProvincia(provinciaObj);
+                paciente.setLocalidad(localidadObj);
+                paciente.setDireccion(direccion);
+                paciente.setFechaNacimiento(Date.valueOf(fechaNacimiento));
+                paciente.setSexo(sexo.charAt(0));
+                paciente.setCorreoElectronico(email);
+                paciente.setActivo(true);
+                pacienteNegocio.Add(paciente);
+                mv.addObject("msg", "Paciente agregado correctamente");
+            } else {
+                paciente = pacienteNegocio.ReadOne(Integer.valueOf(dni)); 
+                if (paciente != null) {
+                	paciente.setId(id);
+                    paciente.setNombre(nombre);
+                    paciente.setApellido(apellido);
+                    paciente.setDNI(Integer.valueOf(dni));
+                    paciente.setTelefono(telefono);
+                    paciente.setProvincia(provinciaObj);
+                    paciente.setLocalidad(localidadObj);
+                    paciente.setDireccion(direccion);
+                    paciente.setFechaNacimiento(Date.valueOf(fechaNacimiento));
+                    paciente.setSexo(sexo.charAt(0));
+                    paciente.setCorreoElectronico(email);
+                    paciente.setActivo(true);
+                    pacienteNegocio.Update(paciente);
+                    mv.addObject("msg", "Paciente actualizado correctamente");
+                } else {
+                    mv.addObject("msgerror", "Paciente no encontrado");
+                }
+            }
+
+            mv.addObject("usuario", usuario);
+            mv.setViewName("admin");
         } catch (Exception e) {
-            mv.addObject("msgerror", "algo salio mal"+e.getMessage());
-			mv.setViewName("abmlPacientes");
+            mv.addObject("msgerror", "Algo salió mal: " + e.getMessage());
+            mv.setViewName("abmlPacientes");
         }
 
         return mv;
@@ -92,7 +113,27 @@ public class PacienteABML {
         }
         return mv;
     }
+    
+    @RequestMapping(value = "PacienteEliminar.html", method = RequestMethod.POST)
+    public ModelAndView eliminarPaciente(String dni, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String username =session.getAttribute("usuario").toString();
+        Usuario usuario = negocioUsuario.ReadOne(username);
+        ModelAndView mv = new ModelAndView();
+        
+        System.out.println("este es el numero de dni"+dni);
+        Paciente pac = new Paciente();
+        pac= pacienteNegocio.ReadOne(Integer.valueOf(dni));
+        try {
+            pacienteNegocio.Delete(pac);
+            mv.addObject("msg", "Paciente eliminado correctamente");
+        } catch (Exception e) {
+            mv.addObject("msgerror", "Algo salió mal: " + e.getMessage());
+        }
+        
+        mv.addObject("usuario", usuario);
+        mv.setViewName("admin");
+        return mv;
+    }
 
 }
-//EDITAR PACIENTE EMI
-//ALTA PACIENTE NICO

@@ -1,9 +1,6 @@
 package frgp.utn.edu.ar.controller;
 
 
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-
 import frgp.utn.edu.ar.entidad.Administrador;
 import frgp.utn.edu.ar.entidad.Medico;
 import org.springframework.beans.factory.annotation.Autowired;

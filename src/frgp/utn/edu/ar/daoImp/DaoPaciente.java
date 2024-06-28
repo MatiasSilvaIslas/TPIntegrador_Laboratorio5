@@ -1,5 +1,6 @@
 package frgp.utn.edu.ar.daoImp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -198,7 +199,14 @@ public class DaoPaciente implements IdaoPaciente{
 	    Session session = conexion.abrirConexion();
         session.beginTransaction();
         List<Paciente> pacientes = session.createQuery("FROM Paciente").list();
-        return pacientes;
+        List<Paciente> pacientesActivos = new ArrayList<>();
+        for (Paciente paciente : pacientes) {
+            if (paciente.isActivo()) {
+                pacientesActivos.add(paciente);
+            }
+        }
+        
+        return pacientesActivos;
 	}
 
 	//Agrego los gettes y setters para Spring Core

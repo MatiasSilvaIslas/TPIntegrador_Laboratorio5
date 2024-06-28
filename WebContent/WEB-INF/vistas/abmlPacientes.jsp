@@ -36,27 +36,25 @@
 <link rel="icon" href="./img/favicon.png" type="image/png" sizes="30x38">
 
 <%
-    List<Localidad> listaLocalidadess = (List<Localidad>) request.getAttribute("localidades");
+	List<Localidad> listaLocalidadess = (List<Localidad>) request.getAttribute("localidades");
 	List<Provincia> listaProvinciass = (List<Provincia>) request.getAttribute("provincias");
 %>
 <script>
     var localidadesPorProvincia = {
-        <%
-            for (Provincia p : listaProvinciass) {
-                out.print(p.getId() + ": [");
-                boolean first = true;
-                for (Localidad l : listaLocalidadess) {
-                    if (l.getProvincia().getId() == p.getId()) {
-                        if (!first) {
-                            out.print(",");
-                        }
-                        out.print("{id: " + l.getId() + ", nombre: '" + l.getLocalidad() + "'}");
-                        first = false;
-                    }
-                }
-                out.print("],");
-            }
-        %>
+        <%for (Provincia p : listaProvinciass) {
+				out.print(p.getId() + ": [");
+				boolean first = true;
+				for (Localidad l : listaLocalidadess) {
+					if (l.getProvincia().getId() == p.getId()) {
+						if (!first) {
+							out.print(",");
+						}
+						out.print("{id: " + l.getId() + ", nombre: '" + l.getLocalidad() + "'}");
+						first = false;
+					}
+				}
+				out.print("],");
+			}%>
     };
 </script>
 
@@ -66,13 +64,10 @@
         var localidadSelect = document.getElementById("localidad");
         var provinciaId = provinciaSelect.value;
         
-        // Limpiar las opciones actuales
         localidadSelect.innerHTML = "";
 
-        // Obtener las localidades correspondientes a la provincia seleccionada
         var localidades = localidadesPorProvincia[provinciaId];
 
-        // Crear las nuevas opciones
         for (var i = 0; i < localidades.length; i++) {
             var option = document.createElement("option");
             option.value = localidades[i].id;
@@ -169,21 +164,35 @@
 						<td><%=pac.getSexo()%></td>
 						<td><%=pac.getTelefono()%></td>
 						<td>
-							<button type="button" class="btn btn-outline-primary">
+							<button type="button" class="btn btn-outline-primary editar-btn"
+								data-id="<%=pac.getId()%>"
+								data-nombre="<%=pac.getNombre()%>"
+								data-apellido="<%=pac.getApellido()%>"
+								data-dni="<%=pac.getDNI()%>"
+								data-fecha-nacimiento="<%=pac.getFechaNacimiento()%>"
+								data-direccion="<%=pac.getDireccion()%>"
+								data-provincia-id="<%=pac.getProvincia().getId()%>"
+								data-localidad-id="<%=pac.getLocalidad().getId()%>"
+								data-email="<%=pac.getCorreoElectronico()%>"
+								data-sexo="<%=pac.getSexo()%>"
+								data-telefono="<%=pac.getTelefono()%>" data-toggle="modal"
+								data-target="#altaPacienteModal">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 									fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-									<path
+            <path
 										d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"></path>
-										</svg>
+        </svg>
 							</button>
 
 						</td>
 						<td>
-							<button type="button" class="btn btn-outline-danger">
+							<button type="button" class="btn btn-outline-danger"
+								onclick="eliminarPaciente(<%=pac.getDNI()%>)">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16"> <path
+									fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+        <path
 										d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"></path>
-										</svg>
+    </svg>
 							</button>
 						</td>
 					</tr>
@@ -213,6 +222,16 @@
 				</div>
 				<div class="modal-body">
 					<form action="PacienteAlta.html" method="post">
+					<%
+        String accion = "alta"; // Valor por defecto para alta
+        String idPaciente = request.getParameter("id"); // Obtener el ID del paciente si existe
+
+        if (idPaciente != null && !idPaciente.isEmpty()) {
+            accion = "editar"; // Si hay un ID de paciente, cambiar a editar
+        }
+    %>
+						<input type="hidden" id="accion" name="accion" value="<%= accion %>">
+						<input type="hidden" id="id" name="id">
 						<div class="form-group">
 							<label for="nombre">Nombre</label> <input type="text"
 								class="form-control" id="nombre" name="nombre">
@@ -292,7 +311,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -312,18 +331,18 @@
 					swal("ok!", "se agrego correctamente!", "success");
 				}, 2000);
 	</script>
-	
+
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
 </script>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
 </script>
 
 
-		 
-		 
-<script type="text/javascript">
+
+
+	<script type="text/javascript">
     $(document).ready(function() {
         $('#miTabla').DataTable({
             "language": {
@@ -332,14 +351,66 @@
             "columnDefs": [
                 {
                     "targets": [0, 1, 2, 3, 4, 5, 6,7,8],
-                    "searchable": true, // Permite la búsqueda en estas columnas
-                    "orderable": false // Evita que se pueda ordenar por estas columnas si no es necesario
+                    "searchable": true, 
+                    "orderable": false 
                 }
             ]
         });
     });
 </script>
 
+	<script>
+    $(document).ready(function() {
+        $('.editar-btn').on('click', function() {
+            var id = $(this).data('id');
+            var nombre = $(this).data('nombre');
+            var apellido = $(this).data('apellido');
+            var dni = $(this).data('dni');
+            var fechaNacimiento = $(this).data('fecha-nacimiento');
+            var direccion = $(this).data('direccion');
+            var provinciaId = $(this).data('provincia-id');
+            var localidadId = $(this).data('localidad-id');
+            var email = $(this).data('email');
+            var sexo = $(this).data('sexo');
+            var telefono = $(this).data('telefono');
+
+            $('#altaPacienteModal #id').val(id);
+            $('#altaPacienteModal #nombre').val(nombre);
+            $('#altaPacienteModal #apellido').val(apellido);
+            $('#altaPacienteModal #dni').val(dni);
+            $('#altaPacienteModal #fechaNacimiento').val(fechaNacimiento);
+            $('#altaPacienteModal #direccion').val(direccion);
+            $('#altaPacienteModal #provincia').val(provinciaId).change();
+            setTimeout(function() {
+                $('#altaPacienteModal #localidad').val(localidadId);
+            }, 500); 
+            $('#altaPacienteModal #email').val(email);
+            $('#altaPacienteModal #sexo').val(sexo);
+            $('#altaPacienteModal #telefono').val(telefono);
+        });
+    });
+</script>
+
+<script>
+function eliminarPaciente(dni) {
+    if (confirm("¿Estás seguro de que deseas eliminar este paciente?")) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "PacienteEliminar.html", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert("Paciente eliminado correctamente");
+                location.reload();
+            } else if (xhr.readyState === 4) {
+                alert("Ocurrió un error al eliminar el paciente");
+            }
+        };
+
+        xhr.send("dni=" + dni);
+    }
+}
+</script>
 
 </body>
 </html>
