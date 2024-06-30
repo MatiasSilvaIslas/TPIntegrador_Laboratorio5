@@ -30,3 +30,4 @@ TPIntegrador_Grupo7.iml
 .idea
 target/
 src/hibernate.cfg.xml
+prepros.config

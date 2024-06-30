@@ -54,7 +54,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8 text-center mt-5">
 				<br>
-				<h1>Panel Administrador</h1>
+				<h1>Panel Administrador </h1>
 				<p>Seleccione la opción deseada:</p>
 			</div>
 			<div class="col-md-2"></div>
